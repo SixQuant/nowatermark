@@ -22,3 +22,9 @@ remover.remove_watermark(path + 'anjuke3.jpg', path + 'anjuke3-result.jpg')
 remover.remove_watermark(path + 'anjuke4.jpg', path + 'anjuke4-result.jpg')
 
 ```
+
+### Original
+![Original](https://github.com/SixQuant/nowatermark/blob/master/data/anjuke2.jpg)
+
+### Removed watermark
+![Removed watermark](https://github.com/SixQuant/nowatermark/blob/master/data/anjuke2-result.jpg)
