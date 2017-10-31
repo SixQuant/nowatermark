@@ -12,7 +12,7 @@ pip3 install nowatermark
 ```
 from nowatermark import WatermarkRemover
 
-path = '/Volumes/Cloud/DataSet/cv2/remove watermark/'
+path = './data/'
 
 watermark_template_filename = path + 'anjuke-watermark-template.jpg'
 remover = WatermarkRemover()

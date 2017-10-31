@@ -6,7 +6,7 @@ setup(
         name='nowatermark',
         version=nowatermark.__version__,
         packages=find_packages(),
-        description='remove image watermark',
+        description='remove watermark',
         author='caviler',
         author_email='caviler@gmail.com',
         license='BSD',
