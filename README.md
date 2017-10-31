@@ -66,8 +66,8 @@ remover.remove_watermark(path + 'anjuke4.jpg', path + 'anjuke4-result.jpg')
 
 ### Inpainting(图片修复)
 * 修复图片前需要做一些前置处理
-  - 首先要得到图片的去水印 Mask 图片，即和待处理图片一样大小的除了水印部分的文字部分外其他部分全部是黑色的位图
-  - 因为前面对水印做了二值化等处理，最终效果发现会有水印轮廓，所以需要对 Mask 图片做一次膨胀处理覆盖掉轮廓
+  - 首先要得到图片的去水印 Mask 图片，即和待处理图片一样大小的除了水印部分的文字部分外其他部分全部是黑色的位图
+  - 因为前面对水印做了二值化等处理，最终效果发现会有水印轮廓，所以需要对 Mask 图片做一次膨胀处理覆盖掉轮廓
 * 选用了Telea在2004年提出的Telea算法，即基于快速行进（FMM）的修复算法
   - 对应 cv2.inpaint(img, mask, 5, cv2.INPAINT_TELEA)
   - 对应论文：[An Image Inpainting Technique Based on the Fast Marching Method (2004)](http://www.cs.rug.nl/~alext/PAPERS/JGT04/paper.pdf)
