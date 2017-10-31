@@ -130,7 +130,7 @@ class WatermarkRemover(object):
         mask = cv2.cvtColor(mask, cv2.COLOR_BGR2GRAY)
 
         # 用遮板进行图片修复，使用 TELEA 算法
-        dst = cv2.inpaint(img, mask, 4, cv2.INPAINT_TELEA)
+        dst = cv2.inpaint(img, mask, 5, cv2.INPAINT_TELEA)
         # cv2.imwrite('dst.jpg', dst)
 
         return dst
