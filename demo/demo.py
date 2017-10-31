@@ -1,15 +1,5 @@
-# nowatermark
-remove watermark. 去除图片中的水印
+# coding=utf-8
 
-## Install
-
-```
-pip3 install nowatermark
-```
-
-## Usage
-
-```
 from nowatermark import WatermarkRemover
 
 path = '/Volumes/Cloud/DataSet/cv2/remove watermark/'
@@ -20,5 +10,3 @@ remover.load_watermark_template(watermark_template_filename)
 
 remover.remove_watermark(path + 'anjuke3.jpg', path + 'anjuke3-result.jpg')
 remover.remove_watermark(path + 'anjuke4.jpg', path + 'anjuke4-result.jpg')
-
-```
