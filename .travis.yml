@@ -6,44 +6,9 @@ python:
   - 3.6
 #  - nightly
 
-env:
-  global:
-    # Dependencies
-    - DEPS_DIR="`readlink -f $TRAVIS_BUILD_DIR/..`"
-    - OPENCV_BUILD_DIR=$DEPS_DIR/opencv/build
- 
-before_install:
-  # https://github.com/openworm/open-worm-analysis-toolbox/blob/master/.travis.yml
-  # INSTALL OPENCV
-  # 1) Get from source, currently master is v3.3.1 (supporting Python 3)
-  
-  - travis_retry git clone --depth 1 https://github.com/Itseez/opencv.git $DEPS_DIR/opencv
-  - mkdir $OPENCV_BUILD_DIR && cd $OPENCV_BUILD_DIR
-  
-  # https://scivision.co/anaconda-python-opencv3/
-  # ------------------------------------------
-  - |
-      if [[ $TRAVIS_PYTHON_VERSION == 2.7 ]]; then 
-        cmake -DBUILD_TIFF=ON -DBUILD_opencv_java=OFF -DWITH_CUDA=OFF -DENABLE_AVX=ON -DWITH_OPENGL=ON -DWITH_OPENCL=ON -DWITH_IPP=ON -DWITH_TBB=ON -DWITH_EIGEN=ON -DWITH_V4L=ON -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=$(python -c "import sys; print(sys.prefix)") -DPYTHON_EXECUTABLE=$(which python) -DPYTHON_INCLUDE_DIR=$(python -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())") -DPYTHON_PACKAGES_PATH=$(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") ..
-      else
-        cmake -DBUILD_TIFF=ON -DBUILD_opencv_java=OFF -DWITH_CUDA=OFF -DENABLE_AVX=ON -DWITH_OPENGL=ON -DWITH_OPENCL=ON -DWITH_IPP=ON -DWITH_TBB=ON -DWITH_EIGEN=ON -DWITH_V4L=ON -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=$(python3 -c "import sys; print(sys.prefix)") -DPYTHON_EXECUTABLE=$(which python3) -DPYTHON_INCLUDE_DIR=$(python3 -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())") -DPYTHON_PACKAGES_PATH=$(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") ..
-      fi
-  - make -j4
-  - sudo make install
-
-    # https://gist.github.com/itguy51/4239282
-    # ------------------------------------------
-  - echo "/usr/local/lib" | sudo tee -a /etc/ld.so.conf.d/opencv.conf
-  - sudo ldconfig
-  - echo "PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig" | sudo tee -a /etc/bash.bashrc
-  - echo "export PKG_CONFIG_PATH" | sudo tee -a /etc/bash.bashrc
-  - export PYTHONPATH=$OPENCV_BUILD_DIR/lib/python3.3/site-packages:$PYTHONPATH 
-
-  # Diagnostic: list all installed Python modules
-  - pydoc modules
-
 install:
   - pip install codecov
+  - pip install opencv-python
 
 script:
   - coverage run tests/test_*
