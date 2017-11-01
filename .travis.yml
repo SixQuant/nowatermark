@@ -1,11 +1,17 @@
-language: python
-python:
-  - "3.6"
-  - "nightly"
-# command to install dependencies
-install:
-  - pip install -r requirements.txt
-# command to run tests
-script:
-  - pytest # or py.test for Python versions 3.5 and below
+sudo: false
 
+language: python
+
+python:
+  - 3.6
+  - nightly
+
+install:
+  - pip install codecov
+#  - pip install -r requirements.txt
+
+script:
+  - coverage run tests/test_*
+
+after_success:
+  - codecov
