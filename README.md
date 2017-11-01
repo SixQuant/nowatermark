@@ -1,9 +1,10 @@
 # nowatermark
 
 [![PyPI Version](https://img.shields.io/pypi/v/nowatermark.svg)](https://pypi.python.org/pypi/nowatermark)
-[![Build Status](https://img.shields.io/travis/nowatermark/nowatermark/master.svg)](https://travis-ci.org/nowatermark/nowatermark)
+[![Build Status](https://img.shields.io/travis/SixQuant/nowatermark/master.svg)](https://travis-ci.org/SixQuant/nowatermark)
 [![Wheel Status](https://img.shields.io/badge/wheel-yes-brightgreen.svg)](https://pypi.python.org/pypi/nowatermark)
-[![Coverage report](https://img.shields.io/codecov/c/github/nowatermark/nowatermark/master.svg)](https://codecov.io/github/nowatermark/nowatermark?branch=master)
+[![Coverage report](https://img.shields.io/codecov/c/github/SixQuant/nowatermark/master.svg)](https://codecov.io/github/SixQuant/nowatermark?branch=master)
+[![Powered by SixQuant](https://img.shields.io/badge/powered%20by-SixQuant-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](https://sixquant.cn)
 
 ## Overview
 remove watermark. 
@@ -22,14 +23,26 @@ remove watermark.
 $ brew install opencv3 --without-python --with-python3 --c++11 --with-contrib  
 ```
 
-### Install nowatermark
+Verifying the installation：
+
+```python
+import cv2
+print(cv2.__version__)
 ```
+
+If you got this error: "ImportError: No module named 'cv2'", then your symlink might be corrupted, you need to link your opencv to python site-packages:
+```bash
+$ brew link --force opencv3
+```
+
+### Install nowatermark
+```bash
 $ pip3 install nowatermark
 ```
 
 ## Usage
 
-```
+```python
 from nowatermark import WatermarkRemover
 
 path = './data/'
